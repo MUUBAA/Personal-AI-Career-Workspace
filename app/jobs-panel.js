@@ -39,7 +39,7 @@ export default function JobsPanel({ s, setS, r, setJd, setTab, flash }) {
   const setBoards = (b) => setS((p) => ({ ...p, boards: b }));
 
   const ctx = useMemo(() => profileContext(s), [s.profile, s.resumes]); // eslint-disable-line react-hooks/exhaustive-deps
-  const saved = useMemo(() => new Set(s.apps.flatMap((a) => [a.url, dedupeKey({ title: a.title, company: a.company })])), [s.apps]);
+  const saved = useMemo(() => new Set(s.apps.flatMap((a) => [a.url, dedupeKey(a)])), [s.apps]);
   const isSaved = (j) => saved.has(j.url) || saved.has(dedupeKey(j));
 
   async function search() {
